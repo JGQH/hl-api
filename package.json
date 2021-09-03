@@ -1,0 +1,14 @@
+{
+  "name": "hl-api",
+  "version": "1.0.0",
+  "description": "Webscraper API for information found in Hololive Website (NOT affiliated to it in any way, shape or form)",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "JGQH",
+  "license": "ISC",
+  "devDependencies": {
+    "@vercel/node": "^1.12.1",
+    "typescript": "^4.4.2"
+  }
+}
