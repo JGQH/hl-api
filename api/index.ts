@@ -1,6 +1,5 @@
 import { getSelector } from '../lib/axiosHandler'
-import type { ApiResponse } from '../lib/types'
-import type { VercelRequest } from '@vercel/node'
+import type { ApiRequest, ApiResponse } from '../lib/types'
 
 interface Talent {
   name: string
@@ -8,7 +7,7 @@ interface Talent {
   image_url: string
 }
 
-export default async (req:VercelRequest, res:ApiResponse<{ talents: Talent[] }>) => {
+export default async (req:ApiRequest, res:ApiResponse<{ talents: Talent[] }>) => {
   try {
     const $ = await getSelector('/talents')
 

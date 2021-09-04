@@ -22,5 +22,4 @@ This project aims to create an API to get information from the [Hololive Website
 To run this project, it would have to be forked and then published from Vercel.
 
 ## To-Do
-- Endpoint for info of an individual talent
 - Endpoint for schedule
