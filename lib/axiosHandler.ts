@@ -8,3 +8,9 @@ export async function getSelector(path:string) {
 
   return cheerio.load(response.data)
 }
+
+export async function getJson<T>(path:string) {
+  const response = await axios.get(path)
+
+  return response.data as T
+}
