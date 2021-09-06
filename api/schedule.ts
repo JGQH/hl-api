@@ -1,5 +1,6 @@
+import allowCors from '../lib/cors'
 import { getJson } from '../lib/axiosHandler'
-import type { ApiRequest, ApiResponse } from '../lib/types'
+import type { ApiRequest, ApiResponse, ApiEndpoint } from '../lib/types'
 
 interface StreamInfo {
   is_live: boolean
@@ -46,7 +47,7 @@ function getStreamInfo(holoVideo:HoloVideo):StreamInfo {
   }
 }
 
-export default async (req:ApiRequest, res:ApiResponse<{ yesterday:StreamInfo[], today:StreamInfo[], tomorrow:StreamInfo[] }>) => {
+const talentsSchedule:ApiEndpoint = async (req:ApiRequest, res:ApiResponse<{ yesterday:StreamInfo[], today:StreamInfo[], tomorrow:StreamInfo[] }>) => {
   try {
     const schedule = await getJson<HoloList>('https://schedule.hololive.tv/api/list/7') //Hololive has its own API, but it has so much info that is only used for the website
 
@@ -61,3 +62,5 @@ export default async (req:ApiRequest, res:ApiResponse<{ yesterday:StreamInfo[], 
     })
   }
 }
+
+export default allowCors(talentsSchedule, ['GET', 'OPTIONS'])

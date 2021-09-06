@@ -1,5 +1,6 @@
+import allowCors from '../lib/cors'
 import { getSelector } from '../lib/axiosHandler'
-import type { ApiRequest, ApiResponse } from '../lib/types'
+import type { ApiRequest, ApiResponse, ApiEndpoint } from '../lib/types'
 
 type Dictionary = {
   [key:string]: string
@@ -11,7 +12,7 @@ interface Info {
   data: Dictionary
 }
 
-export default async (req:ApiRequest<{ info_url?: string }>, res:ApiResponse<Info>) => {
+const talentsInfo:ApiEndpoint = async (req:ApiRequest<{ info_url?: string }>, res:ApiResponse<Info>) => {
   try {
     const { info_url = '' } = req.query
 
@@ -42,3 +43,5 @@ export default async (req:ApiRequest<{ info_url?: string }>, res:ApiResponse<Inf
     })
   }
 }
+
+export default allowCors(talentsInfo, ['GET', 'OPTIONS'])

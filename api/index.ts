@@ -1,5 +1,6 @@
+import allowCors from '../lib/cors'
 import { getSelector } from '../lib/axiosHandler'
-import type { ApiRequest, ApiResponse } from '../lib/types'
+import type { ApiRequest, ApiResponse, ApiEndpoint } from '../lib/types'
 
 interface Talent {
   name: string
@@ -7,7 +8,7 @@ interface Talent {
   image_url: string
 }
 
-export default async (req:ApiRequest, res:ApiResponse<{ talents: Talent[] }>) => {
+const talentsList:ApiEndpoint = async (req:ApiRequest, res:ApiResponse<{ talents: Talent[] }>) => {
   try {
     const $ = await getSelector('/talents')
 
@@ -32,3 +33,5 @@ export default async (req:ApiRequest, res:ApiResponse<{ talents: Talent[] }>) =>
     })
   }
 }
+
+export default allowCors(talentsList, ['GET', 'OPTIONS'])
